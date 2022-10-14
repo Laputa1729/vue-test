@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import App from './App.vue';
 
-import plugins from '@/plugins';
+// import { mixin, mixin2 } from '@/mixin';
 
 Vue.config.productionTip = false;
 
-// 安装插件
-Vue.use(plugins, 1, 2, 3);
+// 全局混合
+// Vue.mixin(mixin);
+// Vue.mixin(mixin2);
 
 new Vue({
     render: (h) => h(App),
