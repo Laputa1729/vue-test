@@ -1,5 +1,5 @@
 <template>
-	<div class="test">
+	<div>
 		<h2>学生姓名：{{name}}</h2>
 		<h2>学生性别：{{sex}}</h2>
 	</div>
@@ -13,13 +13,8 @@ export default {
 		return {
 			name: '张三',
 			sex: '男',
+			x: 666
 		}
 	},
 }
 </script>
-
-<style>
-.test {
-	background-color: orange;
-}
-</style>
