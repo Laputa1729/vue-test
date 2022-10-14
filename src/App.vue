@@ -1,7 +1,8 @@
 <template>
 	<div>
-		<School></School>
-		<Student></Student>
+		<h1 ref="title" v-text="msg"></h1>
+		<button ref="btn" @click="showDOM">点我输出上方的dom元素</button>
+		<School ref="sch"></School>
 	</div>
 </template>
 
@@ -15,6 +16,16 @@ export default {
 	components: {
 		School,
 		Student
+	},
+	data() {
+		return {
+			msg: '欢迎传说中的勇者！'
+		}
+	},
+	methods: {
+		showDOM() {
+			console.log(this.$refs);
+		}
 	}
 }
 </script>
