@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Student from '@/components/Student.vue'
+import Student from '@/components/Footer.vue'
 
 export default {
 	name: 'App',
