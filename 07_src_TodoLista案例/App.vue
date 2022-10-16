@@ -21,24 +21,11 @@ export default {
     components: { Header, Footer, List },
     data() {
         return {
-            /* todos: [
+            todos: [
                 { id: '001', title: '抽烟', done: true },
                 { id: '002', title: '喝酒', done: false },
                 { id: '003', title: '开车', done: true },
-            ] */
-            todos: JSON.parse(localStorage.getItem('todos')) || []
-        }
-    },
-    watch: {
-        /* todos(newValue, oldValue) {
-            localStorage.setItem('todos', JSON.stringify(newValue));
-        }, */
-        // 深度监视
-        todos: {
-            deep: true,
-            handler(val) {
-                localStorage.setItem('todos', JSON.stringify(val));
-            }
+            ]
         }
     },
     methods: {

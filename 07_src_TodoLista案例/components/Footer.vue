@@ -5,7 +5,6 @@
             <input type="checkbox" v-model="isCheckAll"/>
         </label>
         <span><span>已完成{{ doneTotal }}</span> / 全部{{ total }}</span>
-        <!--<button onclick="localStorage.clear()">clearLocalStorage</button>-->
         <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
     </div>
 </template>
