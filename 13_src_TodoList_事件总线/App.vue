@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import PubSub from 'pubsub-js';
-
 import Header from '@/components/Header.vue'
 import List from '@/components/List'
 import Footer from '@/components/Footer.vue'
@@ -55,13 +53,8 @@ export default {
                 if (item.id === id) item.done = !item.done;
             });
         },
-        updateTodo(id, title) {
-            this.todos.forEach((item) => {
-                if (item.id === id) item.title = title;
-            });
-        },
-        // 删除，不用的参数用_占位
-        deleteTodo(_, id) {
+        // 删除
+        deleteTodo(id) {
             this.todos = this.todos.filter(item => {
                 return item.id !== id;
             });
@@ -81,14 +74,10 @@ export default {
     },
     mounted() {
         this.$bus.$on('checkTodo', this.checkTodo);
-        this.$bus.$on('updateTodo', this.updateTodo);
-
-        this.pid = PubSub.subscribe('deleteTodo', this.deleteTodo);
+        this.$bus.$on('deleteTodo', this.deleteTodo);
     },
     beforeDestroy() {
-        this.$bus.$off(['checkTodo', 'updateTodo']);
-
-        PubSub.unsubscribe(this.pid);
+        this.$bus.$off(['checkTodo', 'deleteTodo']);
     }
 }
 </script>
@@ -118,12 +107,6 @@ body {
 .btn-danger:hover {
   color: #fff;
   background-color: #bd362f;
-}
-.btn-edit {
-  margin-right: 6px;
-  color: #fff;
-  background-color: skyblue;
-  border: 1px solid rgb(103, 159, 180);
 }
 .btn:focus {
   outline: none;

@@ -4,9 +4,8 @@
             <div class="todo-wrap">
                 <!-- 函数也能传给子组件 -->
                 <!--<Header :addTodo="addTodo"></Header>-->
-                <!-- 父给子绑定自定义事件 -->
                 <Header @addTodo="addTodo"></Header>
-                <List :todos="todos"></List>
+                <List :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></List>
                 <Footer :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"></Footer>
             </div>
         </div>
@@ -14,8 +13,6 @@
 </template>
 
 <script>
-import PubSub from 'pubsub-js';
-
 import Header from '@/components/Header.vue'
 import List from '@/components/List'
 import Footer from '@/components/Footer.vue'
@@ -55,13 +52,8 @@ export default {
                 if (item.id === id) item.done = !item.done;
             });
         },
-        updateTodo(id, title) {
-            this.todos.forEach((item) => {
-                if (item.id === id) item.title = title;
-            });
-        },
-        // 删除，不用的参数用_占位
-        deleteTodo(_, id) {
+        // 删除
+        deleteTodo(id) {
             this.todos = this.todos.filter(item => {
                 return item.id !== id;
             });
@@ -78,17 +70,6 @@ export default {
                 return !item.done;
             });
         }
-    },
-    mounted() {
-        this.$bus.$on('checkTodo', this.checkTodo);
-        this.$bus.$on('updateTodo', this.updateTodo);
-
-        this.pid = PubSub.subscribe('deleteTodo', this.deleteTodo);
-    },
-    beforeDestroy() {
-        this.$bus.$off(['checkTodo', 'updateTodo']);
-
-        PubSub.unsubscribe(this.pid);
     }
 }
 </script>
@@ -118,12 +99,6 @@ body {
 .btn-danger:hover {
   color: #fff;
   background-color: #bd362f;
-}
-.btn-edit {
-  margin-right: 6px;
-  color: #fff;
-  background-color: skyblue;
-  border: 1px solid rgb(103, 159, 180);
 }
 .btn:focus {
   outline: none;

@@ -2,16 +2,9 @@
     <li>
         <label>
             <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
-            <span v-show="!todo.isEdit">{{ todo.title }}</span>
-            <input
-                type="text"
-                ref="targetInput"
-                v-show="todo.isEdit"
-                :value="todo.title"
-                @blur="handleBlur(todo, $event)">
+            <span>{{ todo.title }}</span>
         </label>
         <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-        <button class="btn btn-edit" v-show="!todo.isEdit" @click="handleEdit(todo)">编辑</button>
     </li>
 </template>
 
@@ -29,23 +22,6 @@ export default {
             if (confirm('确定要删除吗？')) {
                 PubSub.publish('deleteTodo', id);
             }
-        },
-        handleEdit(todo) {
-            // 新加的属性不是响应式的，要用Vue.set()
-            // 1todo.isEdit = true;
-            if (todo.hasOwnProperty('isEdit')) {
-                todo.isEdit = true;
-            } else {
-                this.$set(todo, 'isEdit', true);
-            }
-
-            console.log(this.$refs.targetInput)
-            this.$refs.targetInput.focus();  // ??
-        },
-        handleBlur(todo, e) {
-            todo.isEdit = false;
-            if (!e.target.value.trim()) return alert('输入不能为空！');
-            this.$bus.$emit('updateTodo', todo.id, e.target.value);
         }
     }
 }
