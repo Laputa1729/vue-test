@@ -39,8 +39,13 @@ export default {
                 this.$set(todo, 'isEdit', true);
             }
 
-            console.log(this.$refs.targetInput)
-            this.$refs.targetInput.focus();  // ??
+            // 走完这句话才重新解析template
+            // this.$refs.targetInput.focus();
+            // 所以要用
+            this.$nextTick(function () {
+                this.$refs.targetInput.focus();
+            });
+            // 下一次dom更新完毕，执行回调。
         },
         handleBlur(todo, e) {
             todo.isEdit = false;

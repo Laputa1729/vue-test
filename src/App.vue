@@ -1,140 +1,56 @@
 <template>
     <div id="root">
-        <div class="todo-container">
-            <div class="todo-wrap">
-                <!-- 函数也能传给子组件 -->
-                <!--<Header :addTodo="addTodo"></Header>-->
-                <!-- 父给子绑定自定义事件 -->
-                <Header @addTodo="addTodo"></Header>
-                <List :todos="todos"></List>
-                <Footer :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"></Footer>
-            </div>
-        </div>
+        <button @click="getStudents">获取学生信息</button>
+        <button @click="getCars">获取汽车信息</button>
     </div>
 </template>
 
 <script>
-import PubSub from 'pubsub-js';
-
-import Header from '@/components/Header.vue'
-import List from '@/components/List'
-import Footer from '@/components/Footer.vue'
+import axios from 'axios'
 
 export default {
     name: 'App',
-    components: { Header, Footer, List },
-    data() {
-        return {
-            /* todos: [
-                { id: '001', title: '抽烟', done: true },
-                { id: '002', title: '喝酒', done: false },
-                { id: '003', title: '开车', done: true },
-            ] */
-            todos: JSON.parse(localStorage.getItem('todos')) || []
-        }
-    },
-    watch: {
-        /* todos(newValue, oldValue) {
-            localStorage.setItem('todos', JSON.stringify(newValue));
-        }, */
-        // 深度监视
-        todos: {
-            deep: true,
-            handler(val) {
-                localStorage.setItem('todos', JSON.stringify(val));
-            }
-        }
-    },
     methods: {
-        addTodo(todoObj) {
-            this.todos.unshift(todoObj);
+        getStudents() {
+
+            /*
+            * ★跨域问题★
+            *
+            * 1. 服务器和客户端之间，[协议]、[主机名]、[端口号]，3者中，1个不一样，就违反同源策略，就构成跨域。`No 'Access-Control-Access-Origin' header...`
+            *
+            *
+            * ★解决方案★
+            * 1. cors，后端人员主动配置服务器，让服务端的返回结果携带了几个特殊的响应头，客户端读到对应响应头，主动放行，返回结果就拿到了。
+            * 2. jsonp，借助<script>标签的src属性，引入外部资源，利用它不受同源策略限制的特性，用的少，只能解决GET，POST不行。
+            * 3. proxy-server 代理服务器。
+            *        -服务器与服务器之间打交道，就不存在客户端与服务器之间的问题了。
+            *        -反向代理服务器：nginx、vue-cli
+            *
+            **/
+
+            // 跨域了，[端口号]和客户端不一样，违反同源策略，就构成跨域
+            // axios.get('http://localhost:5000/students')
+
+            // 请求代理服务器，帮你转发请求
+            axios.get('http://localhost:8080/laputa/students').then(
+                response => {
+                    console.log('请求成功了，', response.data);
+                },
+                error => {
+                    console.log('请求失败了，', error.message);
+                }
+            );
         },
-        // 勾选
-        checkTodo(id) {
-            this.todos.forEach((item) => {
-                if (item.id === id) item.done = !item.done;
-            });
-        },
-        updateTodo(id, title) {
-            this.todos.forEach((item) => {
-                if (item.id === id) item.title = title;
-            });
-        },
-        // 删除，不用的参数用_占位
-        deleteTodo(_, id) {
-            this.todos = this.todos.filter(item => {
-                return item.id !== id;
-            });
-        },
-        // 全选or取消全选
-        checkAllTodo(flag) {
-            this.todos.forEach((item) => {
-                item.done = flag;
-            });
-        },
-        // 清除已完成
-        clearAllTodo() {
-            this.todos = this.todos.filter((item) => {
-                return !item.done;
-            });
+        getCars() {
+            axios.get('http://localhost:8080/demo/cars').then(
+                response => {
+                    console.log('请求成功了，', response.data);
+                },
+                error => {
+                    console.log('请求失败了，', error.message);
+                }
+            );
         }
-    },
-    mounted() {
-        this.$bus.$on('checkTodo', this.checkTodo);
-        this.$bus.$on('updateTodo', this.updateTodo);
-
-        this.pid = PubSub.subscribe('deleteTodo', this.deleteTodo);
-    },
-    beforeDestroy() {
-        this.$bus.$off(['checkTodo', 'updateTodo']);
-
-        PubSub.unsubscribe(this.pid);
     }
 }
 </script>
-
-<style>
-/*base*/
-body {
-  background: #fff;
-}
-.btn {
-  display: inline-block;
-  padding: 4px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-.btn-danger {
-  color: #fff;
-  background-color: #da4f49;
-  border: 1px solid #bd362f;
-}
-.btn-danger:hover {
-  color: #fff;
-  background-color: #bd362f;
-}
-.btn-edit {
-  margin-right: 6px;
-  color: #fff;
-  background-color: skyblue;
-  border: 1px solid rgb(103, 159, 180);
-}
-.btn:focus {
-  outline: none;
-}
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
-}
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-</style>

@@ -1072,9 +1072,11 @@ module.exports = {
     3. 应用部署上线时需要后端人员支持，解决刷新页面服务端 404 的问题。
 
 
-### 14.用到的一些第三方库
+### 14.用到的一些第三方库 [https://www.npmjs.com/]
 
 1. `nanoid` 生成随机id
 2. `pubsub-js` 消息发布与订阅
+3. `animate.css` 常用动画
+4. `axios`
 
 
