@@ -1078,5 +1078,7 @@ module.exports = {
 2. `pubsub-js` 消息发布与订阅
 3. `animate.css` 常用动画
 4. `axios`
+5. `vue-resource` this.$http.get('/someUrl').then...
+6. `vuex@3`
 
 

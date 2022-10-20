@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Category from '@/components/Category';
+import Category from '@/components/Counter';
 
 export default {
     name: 'App',

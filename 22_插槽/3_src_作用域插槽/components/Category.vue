@@ -1,15 +1,19 @@
 <template>
     <div class="category">
         <h3>{{ title }}分类</h3>
-        <slot name="center">插槽1...</slot>
-        <slot name="footer">插槽2...</slot>
+        <slot :games="games" msg="hello">默认插槽...</slot>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Category',
-    props: ['title']
+    props: ['title'],
+    data() {
+        return {
+            games: ['红色警戒', '穿越火线', '劲舞团', '超级玛丽'],
+        }
+    },
 }
 </script>
 
