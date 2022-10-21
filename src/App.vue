@@ -11,7 +11,7 @@ export default {
     name: 'App',
     components: { Counter },
     mounted() {
-        console.log('App', this)
+        // console.log('App', this)
     }
 }
 </script>
