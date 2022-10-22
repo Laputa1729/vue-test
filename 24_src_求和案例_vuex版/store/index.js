@@ -32,13 +32,11 @@ const mutations = {
         state.sum -= value;
     }
 };
-// 类似于[数据源]准备states——存储数据
+// [数据源]准备states——存储数据
 const state = {
-    sum: 0,
-    school: 'Laputa',
-    subject: '刑侦'
+    sum: 0
 };
-// 类似于[computed]准备getters——state数据加工
+// [computed]准备getters——state数据加工
 const getters = {
     bigSum(state) {
         return state.sum * 10;

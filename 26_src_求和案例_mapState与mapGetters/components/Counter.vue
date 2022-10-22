@@ -8,15 +8,15 @@
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
-        <button @click="increment(n)">+</button>
-        <button @click="decrement(n)">-</button>
-        <button @click="incrementOdd(n)">和为奇数再加</button>
-        <button @click="incrementWait(n)">等一等再加</button>
+        <button @click="increment">+</button>
+        <button @click="decrement">-</button>
+        <button @click="incrementOdd">和为奇数再加</button>
+        <button @click="incrementWait">等一等再加</button>
     </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
     name: 'Counter',
@@ -59,38 +59,18 @@ export default {
         ...mapGetters(['bigSum'])
     },
     methods: {
-        // vuex优化写法
-
-        /* increment() {
-            this.$store.commit('JIA', this.n);
+        increment() {
+            this.$store.dispatch('jia', this.n);
         },
         decrement() {
-            this.$store.commit('JIAN', this.n);
-        }, */
-
-        // [commit -> mutation]
-        // 借助mapMutations生成对应的方法，方法中会调用commit去联系mutations
-        // 对象展开运算符
-        ...mapMutations({
-            increment: 'JIA',
-            decrement: 'JIAN'
-        }),
-
-        /* ****************************************** */
-        /* incrementOdd() {
+            this.$store.dispatch('jian', this.n);
+        },
+        incrementOdd() {
             this.$store.dispatch('jiaOdd', this.n);
         },
         incrementWait() {
             this.$store.dispatch('jiaWait', this.n);
-        }, */
-
-        // [dispatch -> actions]
-        // 借助mapActions生成对应的方法，方法中会调用dispatch去联系actions
-        ...mapActions({
-            incrementOdd: 'jiaOdd',
-            incrementWait: 'jiaWait'
-        })
-        // ...mapActions(['jiaOdd', 'jiaWait'])
+        },
     },
     mounted() {
         const x = mapState({
