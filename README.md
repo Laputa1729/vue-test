@@ -1079,6 +1079,7 @@ module.exports = {
 3. `animate.css` 常用动画
 4. `axios`
 5. `vue-resource` this.$http.get('/someUrl').then...
-6. `vuex@3`
+6. `vuex@3` 状态管理
+7. `vue-router@3`
 
 
