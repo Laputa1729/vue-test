@@ -8,19 +8,12 @@ import Message from '@/pages/Message';
 import Detail from '@/pages/Detail';
 
 const router =  new VueRouter({
-
-    // 路由器两种工作模式
-    // hash       /#/... 兼容性好，井号#/后面的都是hash值，不参与服务器访问，不会随着http请求发给服务器
-    // history    /... 最常用，能完整路径访问服务器，索要资源
-
-    mode: 'history',  // 默认是hash模式
-
     routes: [
         {
             name: 'guanyu',
             path: '/about',
             component: About,
-            meta: { isAuth: true, title: '关于' }
+            meta: { title: '关于' }
         },
         {
             name: 'zhuye',
@@ -33,7 +26,7 @@ const router =  new VueRouter({
                     path: 'news',
                     component: News,
                     meta: { isAuth: true, title: '新闻' },
-                    /* beforeEnter: (to, from, next) => {
+                    beforeEnter: (to, from, next) => {
                         if (to.meta.isAuth) {
                             if (localStorage.getItem('school') === 'Laputa') {
                                 next();  // 放行
@@ -43,7 +36,7 @@ const router =  new VueRouter({
                         } else {
                             next();  // 放行
                         }
-                    } */
+                    }
                 },
                 {
                     name: 'xiaoxi',
@@ -106,8 +99,8 @@ const router =  new VueRouter({
 }); */
 
 // 全局后置路由守卫————每次路由切换之后，调用
-/* router.afterEach((to, from) => {
+router.afterEach((to, from) => {
     document.title = to.meta.title || '默认默认';
-}); */
+});
 
 export default router;

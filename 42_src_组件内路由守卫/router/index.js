@@ -8,13 +8,6 @@ import Message from '@/pages/Message';
 import Detail from '@/pages/Detail';
 
 const router =  new VueRouter({
-
-    // 路由器两种工作模式
-    // hash       /#/... 兼容性好，井号#/后面的都是hash值，不参与服务器访问，不会随着http请求发给服务器
-    // history    /... 最常用，能完整路径访问服务器，索要资源
-
-    mode: 'history',  // 默认是hash模式
-
     routes: [
         {
             name: 'guanyu',

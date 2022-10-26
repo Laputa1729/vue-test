@@ -17,6 +17,7 @@ export default {
             opacity: 1
         }
     },
+
     /* mounted() {
         this.timer = setInterval(() => {
             this.opacity -= .01;
@@ -39,5 +40,7 @@ export default {
     deactivated() {
         clearInterval(this.timer);
     }
+
+    /* 第三个钩子其实是 this.$nextTick(function () { ... }); */
 }
 </script>
