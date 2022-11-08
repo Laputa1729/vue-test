@@ -56,9 +56,9 @@
         ```javascript
         props: {
             name: {
-                type: String, //类型
-                required: true, //必要性
-                default: '老王' //默认值
+                type: String,  // 类型
+                required: true,  // 必要性
+                default: '老王'  // 默认值
             }
         }
         ```
@@ -76,8 +76,8 @@
 
     ```
     {
-        data(){....},
-        methods:{....}
+        data() {....},
+        methods: {....}
         ....
     }
     ```
@@ -96,7 +96,7 @@
 3. 定义插件：
 
     ```js
-    对象.install = function (Vue, options) {
+    对象.install = function(Vue, options) {
         // 1. 添加全局过滤器
         Vue.filter(....)
 
@@ -123,21 +123,21 @@
 
 1. 组件化编码流程：
 
-    ​ (1).拆分静态组件：组件要按照功能点拆分，命名不要与 html 元素冲突。
+    (1) 拆分静态组件：组件要按照功能点拆分，命名不要与 html 元素冲突。
 
-    ​ (2).实现动态组件：考虑好数据的存放位置，数据是一个组件在用，还是一些组件在用：
+    (2) 实现动态组件：考虑好数据的存放位置，数据是一个组件在用，还是一些组件在用：
 
-    ​ 1).一个组件在用：放在组件自身即可。
+    (3) 一个组件在用：放在组件自身即可。
 
-    ​ 2). 一些组件在用：放在他们共同的父组件上（<span style="color:red">状态提升</span>）。
+    (4) 一些组件在用：放在他们共同的父组件上（<span style="color:red">状态提升</span>）。
 
-    ​ (3).实现交互：从绑定事件开始。
+    (5) 实现交互：从绑定事件开始。
 
 2. props 适用于：
 
-    ​ (1).父组件 ==> 子组件 通信
+    (1) 父组件 ==> 子组件 通信
 
-    ​ (2).子组件 ==> 父组件 通信（要求父先给子一个函数）
+    (2) 子组件 ==> 父组件 通信（要求父先给子一个函数）
 
 3. 使用 v-model 时要切记：v-model 绑定的值不能是 props 传过来的值，因为 props 是不可以修改的！
 
@@ -162,7 +162,7 @@
 
         ​ 该方法接受一个键名作为参数，并把该键名从存储中删除。
 
-    4. ` xxxxxStorage.clear()`
+    4. ` xxxxxStorage.clear();`
 
         ​ 该方法会清空存储中的所有数据。
 
@@ -188,7 +188,7 @@
         ```js
         <Demo ref="demo"/>
         ......
-        mounted(){
+        mounted() {
            this.$refs.xxx.$on('atguigu',this.test)
         }
         ```
@@ -197,11 +197,11 @@
 
 4. 触发自定义事件：`this.$emit('atguigu',数据)`
 
-5. 解绑自定义事件`this.$off('atguigu')`
+5. 解绑自定义事件：`this.$off('atguigu')`
 
 6. 组件上也可以绑定原生 DOM 事件，需要使用`native`修饰符。
 
-7. 注意：通过`this.$refs.xxx.$on('atguigu',回调)`绑定自定义事件时，回调<span style="color:red">要么配置在 methods 中</span>，<span style="color:red">要么用箭头函数</span>，否则 this 指向会出问题！
+7. 注意：通过`this.$refs.xxx.$on('atguigu', 回调)`绑定自定义事件时，回调<span style="color:red">要么配置在 methods 中</span>，<span style="color:red">要么用箭头函数</span>，否则 this 指向会出问题！
 
 ## 全局事件总线（GlobalEventBus）
 
@@ -211,10 +211,10 @@
 
     ```js
     new Vue({
-    	......
-    	beforeCreate() {
-    		Vue.prototype.$bus = this //安装全局事件总线，$bus就是当前应用的vm
-    	},
+        ......
+        beforeCreate() {
+            Vue.prototype.$bus = this //安装全局事件总线，$bus就是当前应用的vm
+        },
         ......
     })
     ```
@@ -224,16 +224,16 @@
     1. 接收数据：A 组件想接收数据，则在 A 组件中给$bus 绑定自定义事件，事件的<span style="color:red">回调留在 A 组件自身。</span>
 
         ```js
-        methods(){
-          demo(data){......}
+        methods() {
+            demo(data) {......}
         }
         ......
         mounted() {
-          this.$bus.$on('xxxx',this.demo)
+            this.$bus.$on('xxxx', this.demo)
         }
         ```
 
-    2. 提供数据：`this.$bus.$emit('xxxx',数据)`
+    2. 提供数据：`this.$bus.$emit('xxxx', 数据)`
 
 4. 最好在 beforeDestroy 钩子中，用$off 去解绑<span style="color:red">当前组件所用到的</span>事件。
 
@@ -250,16 +250,16 @@
     3. 接收数据：A 组件想接收数据，则在 A 组件中订阅消息，订阅的<span style="color:red">回调留在 A 组件自身。</span>
 
         ```js
-        methods(){
-          demo(data){......}
+        methods() {
+            demo(data) {......}
         }
         ......
         mounted() {
-          this.pid = pubsub.subscribe('xxx',this.demo) //订阅消息
+            this.pid = pubsub.subscribe('xxx', this.demo) //订阅消息
         }
         ```
 
-    4. 提供数据：`pubsub.publish('xxx',数据)`
+    4. 提供数据：`pubsub.publish('xxx', 数据)`
 
     5. 最好在 beforeDestroy 钩子中，用`PubSub.unsubscribe(pid)`去<span style="color:red">取消订阅。</span>
 
@@ -292,7 +292,7 @@
 
         ```vue
         <transition name="hello">
-        	<h1 v-show="isShow">你好啊！</h1>
+            <h1 v-show="isShow">你好啊！</h1>
         </transition>
         ```
 
@@ -302,7 +302,7 @@
 
 ### 方法一
 
-​ 在 vue.config.js 中添加如下配置：
+在 vue.config.js 中添加如下配置：
 
 ```js
 devServer: {
@@ -318,7 +318,7 @@ devServer: {
 
 ### 方法二
 
-​ 编写 vue.config.js 配置具体代理规则：
+编写 vue.config.js 配置具体代理规则：
 
 ```js
 module.exports = {
@@ -364,8 +364,8 @@ module.exports = {
         ```vue
         父组件中：
         <Category>
-                   <div>html结构1</div>
-                </Category>
+            <div>html结构1</div>
+        </Category>
         子组件中：
         <template>
             <div>
@@ -380,14 +380,14 @@ module.exports = {
         ```vue
         父组件中：
         <Category>
-                    <template slot="center">
-                      <div>html结构1</div>
-                    </template>
+            <template slot="center">
+                <div>html结构1</div>
+            </template>
         
-                    <template v-slot:footer>
-                       <div>html结构2</div>
-                    </template>
-                </Category>
+            <template v-slot:footer>
+                <div>html结构2</div>
+            </template>
+        </Category>
         子组件中：
         <template>
             <div>
@@ -407,20 +407,20 @@ module.exports = {
             ```vue
             父组件中：
             <Category>
-            			<template scope="scopeData">
-            				<!-- 生成的是ul列表 -->
-            				<ul>
-            					<li v-for="g in scopeData.games" :key="g">{{g}}</li>
-            				</ul>
-            			</template>
-            		</Category>
+                <template scope="scopeData">
+                    <!-- 生成的是ul列表 -->
+                    <ul>
+                        <li v-for="g in scopeData.games" :key="g">{{g}}</li>
+                    </ul>
+                </template>
+            </Category>
 
             <Category>
-            			<template slot-scope="scopeData">
-            				<!-- 生成的是h4标题 -->
-            				<h4 v-for="g in scopeData.games" :key="g">{{g}}</h4>
-            			</template>
-            		</Category>
+                <template slot-scope="scopeData">
+                    <!-- 生成的是h4标题 -->
+                    <h4 v-for="g in scopeData.games" :key="g">{{g}}</h4>
+                </template>
+            </Category>
             子组件中：
             <template>
                 <div>
@@ -432,7 +432,7 @@ module.exports = {
             export default {
                 name: 'Category',
                 props: ['title'],
-                //数据在子组件自身
+                // 数据在子组件自身
                 data() {
                     return {
                         games: ['红色警戒', '穿越火线', '劲舞团', '超级玛丽'],
@@ -442,19 +442,16 @@ module.exports = {
             </script>
             ```
 
-    ```
-
-    ```
 
 ## Vuex
 
 ### 1.概念
 
-​ 在 Vue 中实现集中式状态（数据）管理的一个 Vue 插件，对 vue 应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信。
+在 Vue 中实现集中式状态（数据）管理的一个 Vue 插件，对 vue 应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信。
 
 ### 2.何时使用？
 
-​ 多个组件需要共享数据时
+多个组件需要共享数据时
 
 ### 3.搭建 vuex 环境
 
@@ -493,9 +490,9 @@ module.exports = {
 
     //创建vm
     new Vue({
-    	el:'#app',
-    	render: h => h(App),
-    	store
+        el: '#app',
+        render: h => h(App),
+        store
     })
     ```
 
