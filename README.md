@@ -824,7 +824,7 @@ module.exports = {
                     path: 'test',
                     component: Test,
                     children: [
-        	            { 
+                        {
                             name: 'hello' //给路由命名
                             path: 'welcome',
                             component: Hello,
