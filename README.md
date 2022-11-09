@@ -539,7 +539,7 @@ module.exports = {
 
 2. 组件中读取 vuex 中的数据：`$store.state.sum`
 
-3. 组件中修改 vuex 中的数据：`$store.dispatch('action中的方法名',数据)` 或 `$store.commit('mutations中的方法名',数据)`
+3. 组件中修改 vuex 中的数据：`$store.dispatch('action中的方法名', 数据)` 或 `$store.commit('mutations中的方法名', 数据)`
 
     > 备注：若没有网络请求或其他业务逻辑，组件中也可以越过 actions，即不写`dispatch`，直接编写`commit`
 
@@ -553,15 +553,15 @@ module.exports = {
     ......
 
     const getters = {
-    	bigSum(state){
-    		return state.sum * 10
-    	}
+        bigSum(state) {
+            return state.sum * 10
+        }
     }
 
     //创建并暴露store
     export default new Vuex.Store({
-    	......
-    	getters
+        ......
+        getters
     })
     ```
 
@@ -574,10 +574,10 @@ module.exports = {
     ```js
     computed: {
         //借助mapState生成计算属性：sum、school、subject（对象写法）
-         ...mapState({sum:'sum',school:'school',subject:'subject'}),
+        ...mapState({ sum: 'sum', school: 'school', subject: 'subject' }),
 
         //借助mapState生成计算属性：sum、school、subject（数组写法）
-        ...mapState(['sum','school','subject']),
+        ...mapState(['sum', 'school', 'subject']),
     },
     ```
 
@@ -586,7 +586,7 @@ module.exports = {
     ```js
     computed: {
         //借助mapGetters生成计算属性：bigSum（对象写法）
-        ...mapGetters({bigSum:'bigSum'}),
+        ...mapGetters({ bigSum: 'bigSum' }),
 
         //借助mapGetters生成计算属性：bigSum（数组写法）
         ...mapGetters(['bigSum'])
@@ -598,10 +598,10 @@ module.exports = {
     ```js
     methods:{
         //靠mapActions生成：incrementOdd、incrementWait（对象形式）
-        ...mapActions({incrementOdd:'jiaOdd',incrementWait:'jiaWait'})
+        ...mapActions({ incrementOdd: 'jiaOdd', incrementWait: 'jiaWait' })
 
         //靠mapActions生成：incrementOdd、incrementWait（数组形式）
-        ...mapActions(['jiaOdd','jiaWait'])
+        ...mapActions(['jiaOdd', 'jiaWait'])
     }
     ```
 
@@ -610,10 +610,10 @@ module.exports = {
     ```js
     methods:{
         //靠mapActions生成：increment、decrement（对象形式）
-        ...mapMutations({increment:'JIA',decrement:'JIAN'}),
+        ...mapMutations({ increment: 'JIA', decrement: 'JIAN' }),
 
         //靠mapMutations生成：JIA、JIAN（对象形式）
-        ...mapMutations(['JIA','JIAN']),
+        ...mapMutations(['JIA', 'JIAN']),
     }
     ```
 
@@ -626,30 +626,30 @@ module.exports = {
 2. 修改`store.js`
 
     ```javascript
-    const countAbout = {
-      namespaced:true,//开启命名空间
-      state:{x:1},
-      mutations: { ... },
-      actions: { ... },
-      getters: {
-        bigSum(state){
-           return state.sum * 10
+    const countAbout = { 
+        namespaced: true,  // 开启命名空间
+        state: { x: 1 },
+        mutations: { ... },
+        actions: { ... },
+        getters: {
+        bigSum(state) {
+            return state.sum * 10
         }
       }
     }
 
     const personAbout = {
-      namespaced:true,//开启命名空间
-      state:{ ... },
-      mutations: { ... },
-      actions: { ... }
+        namespaced: true,  // 开启命名空间
+        state: { ... },
+        mutations: { ... },
+        actions: { ... }
     }
 
     const store = new Vuex.Store({
-      modules: {
-        countAbout,
-        personAbout
-      }
+        modules: {
+            countAbout,
+            personAbout
+        }
     })
     ```
 
@@ -659,7 +659,7 @@ module.exports = {
     //方式一：自己直接读取
     this.$store.state.personAbout.list
     //方式二：借助mapState读取：
-    ...mapState('countAbout',['sum','school','subject']),
+    ...mapState('countAbout', ['sum', 'school', 'subject']),
     ```
 
 4. 开启命名空间后，组件中读取 getters 数据：
@@ -668,25 +668,25 @@ module.exports = {
     //方式一：自己直接读取
     this.$store.getters['personAbout/firstPersonName']
     //方式二：借助mapGetters读取：
-    ...mapGetters('countAbout',['bigSum'])
+    ...mapGetters('countAbout', ['bigSum'])
     ```
 
 5. 开启命名空间后，组件中调用 dispatch
 
     ```js
     //方式一：自己直接dispatch
-    this.$store.dispatch('personAbout/addPersonWang',person)
+    this.$store.dispatch('personAbout/addPersonWang', person)
     //方式二：借助mapActions：
-    ...mapActions('countAbout',{incrementOdd:'jiaOdd',incrementWait:'jiaWait'})
+    ...mapActions('countAbout', {incrementOdd: 'jiaOdd', incrementWait: 'jiaWait'})
     ```
 
 6. 开启命名空间后，组件中调用 commit
 
     ```js
     //方式一：自己直接commit
-    this.$store.commit('personAbout/ADD_PERSON',person)
+    this.$store.commit('personAbout/ADD_PERSON', person)
     //方式二：借助mapMutations：
-    ...mapMutations('countAbout',{increment:'JIA',decrement:'JIAN'}),
+    ...mapMutations('countAbout', {increment: 'JIA', decrement: 'JIAN'}),
     ```
 
 ## 路由
@@ -817,21 +817,21 @@ module.exports = {
 
         ```js
         {
-        	path:'/demo',
-        	component:Demo,
-        	children:[
-        		{
-        			path:'test',
-        			component:Test,
-        			children:[
-        				{
-                              name:'hello' //给路由命名
-        					path:'welcome',
-        					component:Hello,
-        				}
-        			]
-        		}
-        	]
+            path: '/demo',
+            component: Demo,
+            children: [
+                {
+                    path: 'test',
+                    component: Test,
+                    children: [
+        	            { 
+                            name: 'hello' //给路由命名
+                            path: 'welcome',
+                            component: Hello,
+                        }
+                    ]
+                }
+            ]
         }
         ```
 
@@ -862,24 +862,24 @@ module.exports = {
 
     ```js
     {
-    	path:'/home',
-    	component:Home,
-    	children:[
-    		{
-    			path:'news',
-    			component:News
-    		},
-    		{
-    			component:Message,
-    			children:[
-    				{
-    					name:'xiangqing',
-    					path:'detail/:id/:title', //使用占位符声明接收params参数
-    					component:Detail
-    				}
-    			]
-    		}
-    	]
+        path: '/home',
+        component: Home,
+        children: [
+            {
+                path: 'news',
+                component: News
+            },
+            {
+                component: Message,
+                children: [
+                    {
+                        name: 'xiangqing',
+                        path: 'detail/:id/:title', //使用占位符声明接收params参数
+                        component: Detail
+                    }
+                ]
+            }
+        ]
     }
     ```
 
@@ -912,27 +912,27 @@ module.exports = {
 
 ### 7.路由的 props 配置
 
-​ 作用：让路由组件更方便的收到参数
+作用：让路由组件更方便的收到参数
 
 ```js
 {
-	name:'xiangqing',
-	path:'detail/:id',
-	component:Detail,
+    name: 'xiangqing',
+        path: 'detail/:id',
+        component: Detail,
 
-	//第一种写法：props值为对象，该对象中所有的key-value的组合最终都会通过props传给Detail组件
-	// props:{a:900}
+        //第一种写法：props值为对象，该对象中所有的key-value的组合最终都会通过props传给Detail组件
+        // props:{a:900}
 
-	//第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有params参数通过props传给Detail组件
-	// props:true
+        //第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有params参数通过props传给Detail组件
+        // props:true
 
-	//第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件
-	props(route){
-		return {
-			id:route.query.id,
-			title:route.query.title
-		}
-	}
+        //第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件
+        props(route) {
+        return {
+            id: route.query.id,
+            title: route.query.title
+        }
+    }
 }
 ```
 
@@ -1029,18 +1029,18 @@ module.exports = {
 4. 独享守卫:
 
     ```js
-    beforeEnter(to,from,next){
-    	console.log('beforeEnter',to,from)
-    	if(to.meta.isAuth){ //判断当前路由是否需要进行权限控制
-    		if(localStorage.getItem('school') === 'atguigu'){
-    			next()
-    		}else{
-    			alert('暂无权限查看')
-    			// next({name:'guanyu'})
-    		}
-    	}else{
-    		next()
-    	}
+    beforeEnter(to, from, next) {
+        console.log('beforeEnter', to, from)
+        if (to.meta.isAuth) { //判断当前路由是否需要进行权限控制
+            if (localStorage.getItem('school') === 'atguigu') {
+                next()
+            } else {
+                alert('暂无权限查看')
+                // next({name:'guanyu'})
+            }
+        } else {
+            next()
+        }
     }
     ```
 
