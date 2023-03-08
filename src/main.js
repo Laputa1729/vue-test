@@ -1,48 +1,30 @@
-import Vue from 'vue';
+import Vue from 'vue';  // 默认：运行时版本 vue.runtime.esm.js —— 去除了[模板解析起]，省得生产包还残留模板编译器
+// import Vue from 'vue/dist/vue';  // 完整版 vue.js
+
 import App from './App.vue';
 
-import VueRouter from 'vue-router';
-import router from '@/router';
-
 Vue.config.productionTip = false;
+/*
+  关于不同版本的Vue：
 
-Vue.use(VueRouter);
+    1.vue.js与vue.runtime.xxx.js的区别：
+        (1).vue.js是完整版的Vue，包含：核心功能+模板解析器。
+        (2).vue.runtime.xxx.js是运行版的Vue，只包含：核心功能；没有[模板解析器]。
+            *也就是说，入口文件（main.js）创建vm不能写template
+
+    2.因为vue.runtime.xxx.js没有模板解析器，所以不能使用template配置项，需要使用
+      render函数接收到的createElement函数去指定具体内容。
+*/
 
 new Vue({
-    render: (h) => h(App),
-    router: router
+  render: (h) => h(App),
 }).$mount('#app');
 
-var a = {
-    name: 'xiangqing',
-    path: 'detail/:id',
-    component: Detail,
-
-    //第一种写法：props值为对象，该对象中所有的key-value的组合最终都会通过props传给Detail组件
-    // props:{a:900}
-
-    //第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有params参数通过props传给Detail组件
-    // props:true
-
-    //第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件
-    props(route) {
-        return {
-            id: route.query.id,
-            title: route.query.title
-        }
-    }
-}
-
-function beforeEnter(to, from, next) {
-    console.log('beforeEnter', to, from)
-    if (to.meta.isAuth) { //判断当前路由是否需要进行权限控制
-        if (localStorage.getItem('school') === 'atguigu') {
-            next()
-        } else {
-            alert('暂无权限查看')
-            // next({name:'guanyu'})
-        }
-    } else {
-        next()
-    }
-}
+/*
+  Tips:
+    【箭头函数】
+    () => { 语句 }
+    (参数) => { 语句 }
+    参数 => { 语句 }
+    参数 => 表达式  <===>  function(参数) { return 表达式; }
+*/
