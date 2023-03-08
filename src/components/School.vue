@@ -1,8 +1,7 @@
 <template>
-  <div class="demo">
+  <div class="school">
     <h2>学校名称：{{ name }}</h2>
     <h2>学校地址：{{ address }}</h2>
-    <button @click="showName">点我提示学校名</button>
   </div>
 </template>
 
@@ -15,16 +14,11 @@ export default {
       address: 'Sky'
     }
   },
-  methods: {
-    showName() {
-      alert(this.name)
-    }
-  },
 }
 </script>
 
 <style>
-.demo {
-  background-color: orange;
+.school {
+  background-color: gray;
 }
 </style>

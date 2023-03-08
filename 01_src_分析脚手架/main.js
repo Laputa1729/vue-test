@@ -1,4 +1,4 @@
-import Vue from 'vue';  // 默认：运行时版本 vue.runtime.esm.js —— 去除了[模板解析起]，省得生产包还残留模板编译器
+import Vue from 'vue';  // 默认：运行时版本 vue.runtime.esm.js —— 去除了[模板解析器]，省得生产包还残留模板编译器
 // import Vue from 'vue/dist/vue';  // 完整版 vue.js
 
 import App from './App.vue';

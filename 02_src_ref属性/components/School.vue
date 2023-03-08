@@ -1,24 +1,24 @@
 <template>
-	<div class="school">
-		<h2>学校名称：{{name}}</h2>
-		<h2>学校地址：{{address}}</h2>
-	</div>
+  <div class="school">
+    <h2>学校名称：{{ name }}</h2>
+    <h2>学校地址：{{ address }}</h2>
+  </div>
 </template>
 
 <script>
 export default {
-	name: 'School',
-	data() {
-		return {
-			name: 'Laputa',
-			address: 'Sky'
-		}
-	},
+  name: 'School',
+  data() {
+    return {
+      name: 'Laputa',
+      address: 'Sky'
+    }
+  },
 }
 </script>
 
 <style>
 .school {
-	background-color: gray;
+  background-color: gray;
 }
 </style>
