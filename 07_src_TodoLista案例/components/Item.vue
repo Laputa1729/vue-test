@@ -1,24 +1,24 @@
 <template>
-    <li>
-        <label>
-            <input type="checkbox" :checked="todo.done" @change="checkTodo(todo.id)"/>
-            <span>{{ todo.title }}</span>
-        </label>
-        <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-    </li>
+  <li>
+    <label>
+      <input type="checkbox" :checked="todo.done" @change="checkTodo(todo.id)"/>
+      <span>{{ todo.title }}</span>
+    </label>
+    <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+  </li>
 </template>
 
 <script>
 export default {
-    name: 'Item',
-    props: ['todo', 'checkTodo', 'deleteTodo'],
-    methods: {
-        handleDelete(id) {
-            if (confirm('确定要删除吗？')) {
-                this.deleteTodo(id);
-            }
-        }
+  name: 'Item',
+  props: ['todo', 'checkTodo', 'deleteTodo'],
+  methods: {
+    handleDelete(id) {
+      if (confirm('确定要删除吗？')) {
+        this.deleteTodo(id);
+      }
     }
+  }
 }
 </script>
 
@@ -57,6 +57,12 @@ li:before {
 li:last-child {
   border-bottom: none;
 }
-li:hover { background-color: #ddd; }
-li:hover button { display: block; }
+
+li:hover {
+  background-color: #ddd;
+}
+
+li:hover button {
+  display: block;
+}
 </style>

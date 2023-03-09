@@ -63,7 +63,7 @@
         }
         ```
 
-    > 备注：props 是【只读】的，Vue 底层会监测你对 props 的修改，如果进行了修改，就会发出警告，若业务需求确实需要修改，那么请复制 props 的内容到 data 中一份，然后去修改 data 中的数据。
+    > 备注：props 是【只读】的，Vue 底层会监测你对 props 的修改，如果进行了修改，就会发出警告，若业务需求确实需要修改，那么请复制 props 的内容到 data 中一份，然后去修改 data 中的数据。  
     > props 的优先级比 data 高。
 
 ## mixin(混入)
@@ -262,6 +262,8 @@
     4. 提供数据：`pubsub.publish('xxx', 数据)`
 
     5. 最好在 beforeDestroy 钩子中，用`PubSub.unsubscribe(pid)`去<span style="color:red">取消订阅。</span>
+    
+    6. **Tips: `npm view pubsub-js versions`**
 
 ## nextTick
 

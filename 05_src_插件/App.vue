@@ -1,19 +1,19 @@
 <template>
-	<div>
-		<School></School>
-		<Student></Student>
-	</div>
+  <div>
+    <School></School>
+    <Student></Student>
+  </div>
 </template>
 
 <script>
-import School from '@/components/Header.vue'
-import Student from '@/components/Footer.vue'
+import School from './components/School.vue'
+import Student from './components/Student.vue'
 
 export default {
-	name: 'App',
-	components: {
-		School,
-		Student
-	},
+  name: 'App',
+  components: {
+    School,
+    Student
+  },
 }
 </script>

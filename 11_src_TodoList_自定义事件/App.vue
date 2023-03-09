@@ -15,7 +15,7 @@
 <script>
 import Header from '@/components/Header.vue'
 import List from '@/components/List'
-import Footer from '@/components/Footer.vue'
+import Footer from '@/components/MyFooter.vue'
 
 export default {
     name: 'App',
