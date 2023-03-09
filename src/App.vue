@@ -2,10 +2,10 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <!-- 函数也能传给子组件 -->
-        <MyHeader :addTodo="addTodo"></MyHeader>
-        <List :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></List>
-        <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"></MyFooter>
+        <!-- 自定义事件 -->
+        <MyHeader @addTodo="addTodo"></MyHeader>
+        <List :todos="todos"></List>
+        <MyFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"></MyFooter>
       </div>
     </div>
   </div>
@@ -21,12 +21,20 @@ export default {
   components: {MyHeader, MyFooter, List},
   data() {
     return {
+      // 由于MyHeader组件和MyFooter组件都要用到todos，所以放在App中（状态提升）
       todos: [
         {id: '001', title: '抽烟', done: true},
         {id: '002', title: '喝酒', done: false},
         {id: '003', title: '开车', done: true},
       ]
     }
+  },
+  mounted() {
+    this.$bus.$on('checkTodo', this.checkTodo);
+    this.$bus.$on('deleteTodo', this.deleteTodo);
+  },
+  beforeDestroy() {
+    this.$bus.$off(['checkTodo', 'deleteTodo']);
   },
   methods: {
     addTodo(todoObj) {

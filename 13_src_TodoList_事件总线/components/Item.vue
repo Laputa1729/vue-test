@@ -1,27 +1,29 @@
 <template>
-    <li>
-        <label>
-            <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
-            <span>{{ todo.title }}</span>
-        </label>
-        <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-    </li>
+  <li>
+    <label>
+      <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
+      <span>{{ todo.title }}</span>
+    </label>
+    <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+  </li>
 </template>
 
 <script>
 export default {
-    name: 'Item',
-    props: ['todo'],
-    methods: {
-        handleCheck(id) {
-            this.$bus.$emit('checkTodo', id);
-        },
-        handleDelete(id) {
-            if (confirm('确定要删除吗？')) {
-                this.$bus.$emit('deleteTodo', id);
-            }
-        }
+  name: 'Item',
+  props: ['todo'],
+  methods: {
+    // 勾选or取消勾选
+    handleCheck(id) {
+      this.$bus.$emit('checkTodo', id);
+    },
+    // 删除
+    handleDelete(id) {
+      if (confirm('确定要删除吗？')) {
+        this.$bus.$emit('deleteTodo', id);
+      }
     }
+  }
 }
 </script>
 
@@ -60,6 +62,12 @@ li:before {
 li:last-child {
   border-bottom: none;
 }
-li:hover { background-color: #ddd; }
-li:hover button { display: block; }
+
+li:hover {
+  background-color: #ddd;
+}
+
+li:hover button {
+  display: block;
+}
 </style>

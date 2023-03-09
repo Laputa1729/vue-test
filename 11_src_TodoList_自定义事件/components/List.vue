@@ -1,24 +1,25 @@
 <template>
-    <div>
-        <ul class="todo-main">
-            <Item
-                v-for="(item, index) in todos"
-                :key="item.id"
-                :todo="item"
-                :checkTodo="checkTodo"
-                :deleteTodo="deleteTodo">
-            </Item>
-        </ul>
-    </div>
+  <div>
+    <ul class="todo-main">
+      <Item
+          v-for="(item, index) in todos"
+          :key="item.id"
+          :todo="item"
+          :checkTodo="checkTodo"
+          :deleteTodo="deleteTodo">
+      </Item>
+    </ul>
+  </div>
 </template>
 
 <script>
-import Item from '@/components/Item'
+import Item from '../components/Item'
 
 export default {
-    name: 'List',
-    components: { Item },
-    props: ['todos', 'checkTodo', 'deleteTodo']
+  name: 'List',
+  components: {Item},
+  // 声明接收App传来的数据，其中todos是自己用，checkTodo和deleteTodo是中转传给子组件<Item/>
+  props: ['todos', 'checkTodo', 'deleteTodo']
 }
 </script>
 

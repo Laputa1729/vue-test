@@ -1,7 +1,6 @@
 <template>
   <div class="todo-footer" v-show="total">
     <label>
-      <!--<input type="checkbox" :checked="isCheckAll" @change="checkAll"/>-->
       <input type="checkbox" v-model="isCheckAll"/>
     </label>
     <span><span>已完成{{ doneTotal }}</span> / 全部{{ total }}</span>
@@ -11,8 +10,8 @@
 
 <script>
 export default {
-  name: 'Footer',
-  props: ['todos', 'checkAllTodo', 'clearAllTodo'],
+  name: 'MyFooter',
+  props: ['todos'],
   computed: {
     total() {
       return this.todos.length;
@@ -25,22 +24,19 @@ export default {
     /* isCheckAll() {
         return this.total === this.doneTotal && this.total > 0;
     } */
-    // 升级一下isCheckAll
+    // 升级一下isCheckAll —— （计算属性用v-model双向绑定，被修改了，要写 getter/setter ）
     isCheckAll: {
       get() {
         return this.total === this.doneTotal && this.total > 0;
       },
       set(value) {
-        this.checkAllTodo(value);
+        this.$emit('checkAllTodo', value);
       }
     }
   },
   methods: {
-    checkAll(e) {
-      this.checkAllTodo(e.target.checked);
-    },
     clearAll() {
-      this.clearAllTodo();
+      this.$emit('clearAllTodo');
     }
   }
 }

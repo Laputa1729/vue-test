@@ -21,6 +21,7 @@ export default {
   components: {MyHeader, MyFooter, List},
   data() {
     return {
+      // 由于MyHeader组件和MyFooter组件都要用到todos，所以放在App中（状态提升）
       todos: [
         {id: '001', title: '抽烟', done: true},
         {id: '002', title: '喝酒', done: false},

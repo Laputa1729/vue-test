@@ -4,9 +4,7 @@
       <Item
           v-for="(item, index) in todos"
           :key="item.id"
-          :todo="item"
-          :checkTodo="checkTodo"
-          :deleteTodo="deleteTodo">
+          :todo="item">
       </Item>
     </ul>
   </div>
@@ -18,7 +16,7 @@ import Item from '../components/Item'
 export default {
   name: 'List',
   components: {Item},
-  props: ['todos', 'checkTodo', 'deleteTodo']
+  props: ['todos']
 }
 </script>
 
