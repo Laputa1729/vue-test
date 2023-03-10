@@ -1,29 +1,29 @@
 <template>
-    <div class="todo-header">
-        <input type="text" placeholder="请输入你的任务名称，按回车键确认" v-model.trim="title" @keyup.enter="add"/>
-    </div>
+  <div class="todo-header">
+    <input type="text" placeholder="请输入你的任务名称，按回车键确认" v-model.trim="title" @keyup.enter="add"/>
+  </div>
 </template>
 
 <script>
 // nanoid，第三方库，生成唯一id
-import { nanoid } from 'nanoid'
+import {nanoid} from 'nanoid'
 
 export default {
-    name: 'Header',
-    data() {
-        return {
-            title: ''
-        }
-    },
-    methods: {
-        add(e) {
-            if (this.title === '') return alert('输入不能为空！');
-            const todoObj = { id: nanoid(), title: this.title, done: false };
-            this.$emit('addTodo', todoObj, 1, 2, 3);
-            // e.target.value = '';
-            this.title = '';
-        }
+  name: 'Header',
+  data() {
+    return {
+      title: ''
     }
+  },
+  methods: {
+    add(e) {
+      if (this.title === '') return alert('输入不能为空！');
+      const todoObj = {id: nanoid(), title: this.title, done: false};
+      this.$emit('addTodo', todoObj, 1, 2, 3);
+      // e.target.value = '';
+      this.title = '';
+    }
+  }
 }
 </script>
 

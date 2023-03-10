@@ -1,22 +1,22 @@
 <template>
-    <div>
-        <ul class="todo-main">
-            <Item
-                v-for="(item, index) in todos"
-                :key="item.id"
-                :todo="item">
-            </Item>
-        </ul>
-    </div>
+  <div>
+    <ul class="todo-main">
+      <Item
+          v-for="(item, index) in todos"
+          :key="item.id"
+          :todo="item">
+      </Item>
+    </ul>
+  </div>
 </template>
 
 <script>
 import Item from '@/components/Item'
 
 export default {
-    name: 'List',
-    components: { Item },
-    props: ['todos']
+  name: 'List',
+  components: {Item},
+  props: ['todos']
 }
 </script>
 

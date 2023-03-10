@@ -1,20 +1,20 @@
 <template>
-    <div>
-        <button @click="isShow = !isShow">显示/隐藏</button>
-        <transition name="hello" appear>
-            <h1 v-show="isShow">你好哇！</h1>
-        </transition>
-    </div>
+  <div>
+    <button @click="isShow = !isShow">显示/隐藏</button>
+    <transition name="hello" appear>
+      <h1 v-show="isShow">你好哇！</h1>
+    </transition>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'Test',
-    data() {
-        return {
-            isShow: true
-        }
+  name: 'Test',
+  data() {
+    return {
+      isShow: true
     }
+  }
 }
 </script>
 
@@ -22,12 +22,15 @@ export default {
 h1 {
   background-color: orange;
 }
+
 .hello-enter-active {
   animation: test1 .5s linear;
 }
+
 .hello-leave-active {
   animation: test1 .5s linear reverse;
 }
+
 @keyframes test1 {
   from {
     transform: translateX(-100%);

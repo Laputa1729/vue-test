@@ -1,51 +1,51 @@
 <template>
-    <div class="todo-footer" v-show="total">
-        <label>
-            <!--<input type="checkbox" :checked="isCheckAll" @change="checkAll"/>-->
-            <input type="checkbox" v-model="isCheckAll"/>
-        </label>
-        <span><span>已完成{{ doneTotal }}</span> / 全部{{ total }}</span>
-        <!--<button onclick="localStorage.clear()">clearLocalStorage</button>-->
-        <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
-    </div>
+  <div class="todo-footer" v-show="total">
+    <label>
+      <!--<input type="checkbox" :checked="isCheckAll" @change="checkAll"/>-->
+      <input type="checkbox" v-model="isCheckAll"/>
+    </label>
+    <span><span>已完成{{ doneTotal }}</span> / 全部{{ total }}</span>
+    <!--<button onclick="localStorage.clear()">clearLocalStorage</button>-->
+    <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'Footer',
-    props: ['todos'],
-    computed: {
-        total() {
-            return this.todos.length;
-        },
-        doneTotal() {
-            return this.todos.reduce((pre, current) => {
-                return pre + (current.done ? 1 : 0);
-            }, 0);
-        },
-        /* isCheckAll() {
-            return this.total === this.doneTotal && this.total > 0;
-        } */
-        // 升级一下isCheckAll
-        isCheckAll: {
-            get() {
-                return this.total === this.doneTotal && this.total > 0;
-            },
-            set(value) {
-                // this.checkAllTodo(value);
-                this.$emit('checkAllTodo', value);
-            }
-        }
+  name: 'Footer',
+  props: ['todos'],
+  computed: {
+    total() {
+      return this.todos.length;
     },
-    methods: {
-        /* checkAll(e) {
-            this.checkAllTodo(e.target.checked);
-        }, */
-        clearAll() {
-            // this.clearAllTodo();
-            this.$emit('clearAllTodo');
-        }
+    doneTotal() {
+      return this.todos.reduce((pre, current) => {
+        return pre + (current.done ? 1 : 0);
+      }, 0);
+    },
+    /* isCheckAll() {
+        return this.total === this.doneTotal && this.total > 0;
+    } */
+    // 升级一下isCheckAll
+    isCheckAll: {
+      get() {
+        return this.total === this.doneTotal && this.total > 0;
+      },
+      set(value) {
+        // this.checkAllTodo(value);
+        this.$emit('checkAllTodo', value);
+      }
     }
+  },
+  methods: {
+    /* checkAll(e) {
+        this.checkAllTodo(e.target.checked);
+    }, */
+    clearAll() {
+      // this.clearAllTodo();
+      this.$emit('clearAllTodo');
+    }
+  }
 }
 </script>
 
