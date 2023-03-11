@@ -13,13 +13,13 @@ app.use(history()); // 解决路由模式history 404的问题
 app.use(express.static(__dirname + '/static'));
 
 app.get('/person', (request, response) => {
-    response.send({
-        name: 'Laputa',
-        age: 18,
-    });
+  response.send({
+    name: 'Laputa',
+    age: 18,
+  });
 });
 
 // 配端口
 app.listen(5005, (err) => {
-    if (!err) console.log('服务器启动成功了！');
+  if (!err) console.log('服务器启动成功了！');
 });

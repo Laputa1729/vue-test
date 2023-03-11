@@ -698,7 +698,7 @@ module.exports = {
 
 ### 1.基本使用
 
-1. 安装 vue-router，命令：`npm i vue-router`
+1. 安装 vue-router，命令：`npm i vue-router@3`
 
 2. 应用插件：`Vue.use(VueRouter)`
 

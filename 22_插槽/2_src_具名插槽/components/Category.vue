@@ -1,15 +1,16 @@
 <template>
-    <div class="category">
-        <h3>{{ title }}分类</h3>
-        <slot name="center">插槽1...</slot>
-        <slot name="footer">插槽2...</slot>
-    </div>
+  <div class="category">
+    <h3>{{ title }}分类</h3>
+    <!-- 挖个坑，等着组件使用者来填 -->
+    <slot name="center">我是默认插槽...</slot>
+    <slot name="footer">插槽2</slot>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'Category',
-    props: ['title']
+  name: 'Category',
+  props: ['title']
 }
 </script>
 
@@ -19,13 +20,16 @@ export default {
   height: 300px;
   background-color: skyblue;
 }
+
 h3 {
   text-align: center;
   background-color: orange;
 }
+
 img {
   width: 100%;
 }
+
 video {
   width: 100%;
 }
