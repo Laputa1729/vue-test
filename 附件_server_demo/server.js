@@ -8,7 +8,7 @@ const history = require('connect-history-api-fallback');
 
 const app = express();
 
-app.use(history()); // 解决路由模式history 404的问题
+app.use(history());  // 解决路由模式history 404的问题
 // 启用中间件，专门指定静态资源
 app.use(express.static(__dirname + '/static'));
 

@@ -4,7 +4,7 @@
     <div>
       <ul class="nav nav-tabs">
         <li>
-          <!-- replace属性开启，替换当前记录 -->
+          <!-- replace属性开启，替换当前历史记录 -->
           <router-link replace class="list-group-item" active-class="active" to="/home/news">News</router-link>
         </li>
         <li>

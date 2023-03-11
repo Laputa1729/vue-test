@@ -1080,5 +1080,6 @@ module.exports = {
 5. `vue-resource` this.$http.get('/someUrl').then...
 6. `vuex@3` 状态管理
 7. `vue-router@3`
+8. `NProgress` 页面顶端进度条第三方库
 
 
