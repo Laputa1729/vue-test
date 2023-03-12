@@ -56,9 +56,7 @@ const mutations = {
 };
 // 存储数据
 const state = {
-  sum: 0,
-  school: 'Laputa',
-  subject: '刑侦',
+  sum: 0
 };
 
 // 加工state里的数据，类似[computed]，全组件都能用了

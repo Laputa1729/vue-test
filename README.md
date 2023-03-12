@@ -457,6 +457,10 @@ module.exports = {
 
 ### 3.搭建 vuex 环境
 
+> vue2中，要用vuex的3版本  
+> `npm install vuex@3`
+
+
 1. 创建文件：`src/store/index.js`
 
     ```js

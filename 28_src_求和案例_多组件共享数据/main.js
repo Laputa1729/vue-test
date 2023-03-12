@@ -1,14 +1,15 @@
 import Vue from 'vue';
 import App from './App.vue';
-
-import store from '@/store/index'
+import store from './store';
+/*
+* import语句执行优先级最高
+* 故，Vue.use(Vuex)放到'./store'中
+* */
 
 Vue.config.productionTip = false;
 
-new Vue({
-    render: (h) => h(App),
-    store,
-    beforeCreate() {
-        Vue.prototype.$bus = this;  // 安装全局事件总线
-    }
+const vm = new Vue({
+  store,
+  render: (h) => h(App),
 }).$mount('#app');
+

@@ -1,21 +1,20 @@
 <template>
-    <div>
-        <Counter></Counter>
-        <hr>
-        <Person></Person>
-    </div>
+  <div>
+    <h1>我是&lt;App/&gt;: {{ $store.getters.bigSum }}</h1>
+    <hr>
+    <Counter></Counter>
+    <hr>
+    <Person></Person>
+  </div>
 </template>
 
 <script>
-import Counter from '@/components/Counter';
-import Person from '@/components/Person';
+import Counter from './components/Counter';
+import Person from './components/Person';
 
 export default {
-    name: 'App',
-    components: { Counter, Person },
-    mounted() {
-        // console.log('App', this)
-    }
+  name: 'App',
+  components: {Counter, Person},
 }
 </script>
 

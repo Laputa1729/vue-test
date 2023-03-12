@@ -1,6 +1,5 @@
 <template>
-  <div style="background-color: skyblue;">
-    <div>我是&lt;Counter/&gt;</div>
+  <div>
     <!--
     <h1>当前求和为：{{ $store.state.sum }}</h1>
     <h3>当前求和放大10倍：{{ $store.getters.bigSum }}</h3>
@@ -9,7 +8,6 @@
     <h1>当前求和为：{{ mySum }}</h1>
     <h3>当前求和放大10倍：{{ bigSum }}</h3>
     <h3>我在{{ mySchool }}，学习 “{{ mySubject }}”</h3>
-    <h3 style="color: red;">我拿到了&lt;Person/&gt;的总人数：{{ personList.length }}</h3>
     <select v-model.number="n">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -40,10 +38,9 @@ export default {
       mySum: 'sum',
       mySchool: 'school',
       mySubject: 'subject',
-      personList: 'personList',  // ★★★用了mapState，从vuex里读取数据，就如同接收props一样简单。
     }),
     // ②数组写法
-    // ...mapState(['sum', 'school', 'subject', 'personList']),
+    // ...mapState(['sum', 'school', 'subject']),
 
     // 借助mapGetters生成计算属性，读取getters中的数据
     // ...mapGetters({bigSum: 'bigSum'}),
@@ -52,12 +49,6 @@ export default {
   mounted() {
     // console.log('<Counter/>', this)
     // console.log('@Store: ', this.$store)
-    const x = mapState({
-      sum: 'sum',
-      school: 'school',
-      subject: 'subject',
-    });
-    console.log(x)
   },
   methods: {
     /*
