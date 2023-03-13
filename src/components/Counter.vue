@@ -6,7 +6,7 @@
     <h3>当前求和放大10倍：{{ $store.getters.bigSum }}</h3>
     <h3>我在{{ $store.state.school }}，学习 “{{ $store.state.subject }}”</h3>
     -->
-    <h1>当前求和为：{{ sum }}</h1>
+    <h1>当前求和为：{{ sum11111 }}</h1>
     <h3>当前求和放大10倍：{{ bigSum }}</h3>
     <h3>我在{{ school }}，学习 “{{ subject }}”</h3>
     <h3 style="color: red;">我拿到了&lt;Person/&gt;的总人数：{{ personList.length }}</h3>
@@ -39,7 +39,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['sum', 'school', 'subject']),
+    // 写法1
+    // ...mapState(['sum', 'school', 'subject']),
+    // 写法2，主要用于另起名字
+    ...mapState({
+      sum11111: state => state.sum,
+      school: state => state.school,
+      subject: state => state.subject,
+    }),
 
     // ...moduleBHelper.mapState(['personList']),
     // 也可以

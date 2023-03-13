@@ -40,6 +40,14 @@ export default {
   },
   computed: {
     ...mapState(['sum', 'school', 'subject']),
+    /*
+    // 写法2，主要用于另起名字
+    ...mapState({
+      sum11111: state => state.sum,
+      school: state => state.school,
+      subject: state => state.subject,
+    }),
+    */
 
     // ...moduleBHelper.mapState(['personList']),
     // 也可以

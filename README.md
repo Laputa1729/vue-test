@@ -584,6 +584,13 @@ module.exports = {
 
         //借助mapState生成计算属性：sum、school、subject（数组写法）
         ...mapState(['sum', 'school', 'subject']),
+   
+        // 也可，主要用于另起名字
+        ...mapState({
+          sum11111: state => state.sum,
+          school: state => state.school,
+          subject: state => state.subject,
+        }),
     },
     ```
 
@@ -695,9 +702,9 @@ module.exports = {
     ...mapMutations('countAbout', {increment: 'JIA', decrement: 'JIAN'}),
     ```
 
-### 8.模块化+命名空间 `createNamespacedHelpers`
+### 8. `createNamespacedHelpers` 辅助函数
 
-1. `createNamespacedHelpers` 辅助函数：
+1. 要么：
 
     ```javascript
     import { createNamespacedHelpers } from 'vuex';
