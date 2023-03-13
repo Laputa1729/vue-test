@@ -695,6 +695,37 @@ module.exports = {
     ...mapMutations('countAbout', {increment: 'JIA', decrement: 'JIAN'}),
     ```
 
+### 8.模块化+命名空间 `createNamespacedHelpers`
+
+1. `createNamespacedHelpers` 辅助函数：
+
+    ```javascript
+    import { createNamespacedHelpers } from 'vuex';
+    const { mapGetters: mapGettersForModuleA } = createNamespacedHelpers('moduleA');
+    const { mapGetters: mapGettersForModuleB } = createNamespacedHelpers('moduleB');
+    ...
+    ...
+    computed: {
+      ...mapGettersForModuleA(['getterA']),
+      ...mapGettersForModuleB(['getterB']),
+    }
+    ```
+
+2. 或者：
+
+    ```javascript
+    import { createNamespacedHelpers } from 'vuex';
+    const { mapActions, mapGetters } = createNamespacedHelpers('moduleA');
+    const moduleBHelper = createNamespacedHelpers('moduleB');
+    ...
+    ...
+    computed: {
+      ...mapGetters(['getterA']),
+      ...moduleBHelper.mapGetters(['getterB']),
+    }
+    ```
+
+
 ## 路由
 
 1. 理解： 一个路由（route）就是一组映射关系（key - value），多个路由需要路由器（router）进行管理。
